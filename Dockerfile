@@ -9,6 +9,8 @@ WORKDIR /app
 
 # Copy the application code
 COPY . .
+RUN mkdir -p /app/output
+ENV PPTX_OUTPUT_DIR=/app/output
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
