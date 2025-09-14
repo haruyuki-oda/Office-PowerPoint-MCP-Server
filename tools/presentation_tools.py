@@ -117,7 +117,15 @@ def register_presentation_tools(app: FastMCP, presentations: Dict, get_current_p
         
         # Save the presentation
         try:
-            saved_path = ppt_utils.save_presentation(presentations[pres_id], file_path)
+            if "PPTX_OUTPUT_DIR" in os.environ:
+                output_dir_override = os.environ["PPTX_OUTPUT_DIR"]
+                os.makedirs(output_dir_override, exist_ok=True)
+                # If the provided path is not absolute, place it under the override dir
+                base_path = os.path.basename(file_path)
+                file_path = os.path.join(
+                                output_dir_override, base_path)
+            saved_path = ppt_utils.save_presentation(
+                                presentations[pres_id], file_path)
             return {
                 "message": f"Presentation saved to {saved_path}",
                 "file_path": saved_path
