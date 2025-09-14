@@ -9,6 +9,9 @@ WORKDIR /app
 
 # Copy the application code
 COPY . .
+RUN mkdir -p /app/output
+RUN mkdir -p /app/user_templates
+ENV PPT_TEMPLATE_PATH=/app/user_templates
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt

@@ -1,0 +1,2 @@
+export TARGET_PPTX_DIR=out
+export PPT_TEMPLATE_PATH=user_templates

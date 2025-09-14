@@ -4,6 +4,7 @@ MCP Server for PowerPoint manipulation using python-pptx.
 Consolidated version with 20 tools organized into multiple modules.
 """
 import os
+import sys
 import argparse
 from typing import Dict, Any
 from mcp.server.fastmcp import FastMCP
@@ -404,6 +405,7 @@ def get_server_info() -> Dict:
 
 # ---- Main Function ----
 def main(transport: str = "stdio", port: int = 8000):
+    print("✅ MCP of ppt_mcp_server started", flush=True)
     if transport == "http":
         import asyncio
         # Set the port for HTTP transport
